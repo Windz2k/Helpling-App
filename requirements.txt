@@ -1,0 +1,12 @@
+Requirements Needed:
+Tkinter
+Requests
+Webbrowser
+Re
+Pyperclip
+Sys
+Pillow
+bs4
+
+Some packages are automatically installed 
+Search On Youtube How To Install the Packages for Your Operating System.
