@@ -37,29 +37,36 @@ def search_param():
     
     # Produces a Request
     response = requests.get("https://www.google.com/search?q=" + str(url), headers=headers)
+    print("https://www.google.com/search?q=" + str(url))
     response.raise_for_status()
 
 
     searchBlockSoup = Soup(response.text,"html.parser")
     linkElems = searchBlockSoup.find_all(class_="g")
     
-    for i in range(5):
+    for i in range(6):
         try:    
 
-            website = url_extra2.search(str(linkElems[i].find_all(class_="r"))).group()
-            print(website, end="\n")
+            # website = url_extra2.search(str(linkElems[i].find_all(class_="yuRUbf"))).group()
+            
+            aTags = linkElems[i].find_all(class_="yuRUbf")[0].find("a").get("href")
+            print(aTags)
+            
+            # print(a, end="\n")
             print(end="\n\n")
             
-            website2 = str(website)
+            # website2 = str(website)
             
-            if (website2.find("https://")==-1): 
-                lsts_of_websites.append("https://" + website2)
+            # if (website2.find("https://")==-1): 
+            #     lsts_of_websites.append("https://" + website2)
                 
-            else :
-                lsts_of_websites.append(website2)
+            # else :
+            #     lsts_of_websites.append(website2)
+            lsts_of_websites.append(aTags)
                 
         except:
             print("Error" + str(i) , end="\n")
+            
     open_webrowser(lsts_of_websites)
     
     # Deletes The Search Bar
@@ -71,7 +78,7 @@ def search_param():
     
 # Opens The First Three Most Recommended Websites    
 def open_webrowser(lst):
-    for i in range(3):
+    for i in range(5):
         webbrowser.open(lst[i])
 
 
